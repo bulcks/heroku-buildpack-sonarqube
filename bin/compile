@@ -81,20 +81,20 @@ install_sonarqube() {
   echo " done"
 }
 
-install_sonarts_plugin() {
+install_clojure_plugin() {
   local BUILD_DIR=${1}
   local CACHE_DIR=${2}
   
-  SONARTS_DIST_JAR="sonar-typescript-plugin-1.6.0.2388.jar"
-  SONARTS_URL="https://sonarsource.bintray.com/Distribution/sonar-typescript-plugin/${SONARTS_DIST_JAR}"
+  CLOJURE_DIST_JAR="sonar-clojure-plugin-2.0.0.jar"
+  CLOJURE_URL="https://github.com/fsantiag/sonar-clojure/releases/download/v2.0.0/sonar-clojure-plugin-2.0.0.jar"
 
-  echo -n "-----> Downloading SonarTS....."
-  curl --silent --location ${SONARTS_URL} > ${CACHE_DIR}/${SONARTS_DIST_JAR}
+  echo -n "-----> Downloading sonar-clojure....."
+  curl --silent --location ${CLOJURE_URL} > ${CACHE_DIR}/${CLOJURE_DIST_JAR}
   echo " done"
 
-  echo -n "-----> Installing SonarTS....."
-  cp ${CACHE_DIR}/${SONARTS_DIST_JAR} ${SONAR_HOME}/extensions/plugins/${SONARTS_DIST_JAR}
-  chmod +rwx ${SONAR_HOME}/extensions/plugins/${SONARTS_DIST_JAR}
+  echo -n "-----> Installing sonar-clojure....."
+  cp ${CACHE_DIR}/${CLOJURE_DIST_JAR} ${SONAR_HOME}/extensions/plugins/${CLOJURE_DIST_JAR}
+  chmod +rwx ${SONAR_HOME}/extensions/plugins/${CLOJURE_DIST_JAR}
   echo " done"
 }
 
@@ -126,6 +126,6 @@ install_nodejs() {
 install_jdk ${BUILD_DIR} ${CACHE_DIR}
 install_nodejs ${BUILD_DIR} ${CACHE_DIR}
 install_sonarqube ${BUILD_DIR} ${CACHE_DIR}
-#install_sonarts_plugin ${BUILD_DIR} ${CACHE_DIR}
+install_clojure_plugin ${BUILD_DIR} ${CACHE_DIR}
 
 
